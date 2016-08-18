@@ -34,31 +34,25 @@ namespace Itemtronics.Tiles
 			dustType = mod.DustType("Sparkle");
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
-			chest = "Automatic Chest";
+			chest = "Bon Chest";
 			chestDrop = mod.ItemType("AutomaticChest");
+		}
+
+		public override void HitWire(int i, int j)
+		{
+
 		}
 
 		public string MapChestName(string name, int i, int j)
 		{
-			int left = i;
-			int top = j;
-			Tile tile = Main.tile[i, j];
-			if (tile.frameX != 0)
-			{
-				left--;
-			}
-			if (tile.frameY != 0)
-			{
-				top--;
-			}
-			int chest = Chest.FindChest(left, top);
-			if (Main.chest[chest].name == "")
+			string chestName = ChestUtils.GetModChest(i, j).name;
+			if (chestName == "")
 			{
 				return name;
 			}
 			else
 			{
-				return name + ": " + Main.chest[chest].name;
+				return name + ": " + chestName;
 			}
 		}
 
@@ -148,26 +142,15 @@ namespace Itemtronics.Tiles
 		public override void MouseOver(int i, int j)
 		{
 			Player player = Main.player[Main.myPlayer];
-			Tile tile = Main.tile[i, j];
-			int left = i;
-			int top = j;
-			if (tile.frameX != 0)
-			{
-				left--;
-			}
-			if (tile.frameY != 0)
-			{
-				top--;
-			}
-			int chest = Chest.FindChest(left, top);
+			Chest chest = ChestUtils.GetModChestSafe(i, j);
 			player.showItemIcon2 = -1;
-			if (chest < 0)
+			if (chest == null)
 			{
 				player.showItemIconText = Lang.chestType[0];
 			}
 			else
 			{
-				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Automatic Chest";
+				player.showItemIconText = chest.name.Length > 0 ? chest.name : "Automatic Chest";
 				if (player.showItemIconText == "Automatic Chest")
 				{
 					player.showItemIcon2 = mod.ItemType("AutomaticChest");
