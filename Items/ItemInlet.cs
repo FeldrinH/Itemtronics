@@ -3,15 +3,15 @@ using Terraria.ModLoader;
 
 namespace Itemtronics.Items
 {
-	public class AutomaticChest : ModItem
+	public class ItemInlet : ModItem
 	{
 		public override void SetDefaults()
 		{
-			item.name = "Automatic Chest";
+			item.name = "Item Inlet";
 			item.width = 26;
 			item.height = 22;
 			item.maxStack = 99;
-			AddTooltip("Picks up items when activated");
+			AddTooltip("Recieves items from connected outlets and places them in an adjacent chest");
 			item.useTurn = true;
 			item.autoReuse = true;
 			item.useAnimation = 15;
@@ -19,15 +19,14 @@ namespace Itemtronics.Items
 			item.useStyle = 1;
 			item.consumable = true;
 			item.value = 500;
-			item.createTile = mod.TileType("AutomaticChest");
+			item.createTile = mod.TileType("ItemInlet");
 		}
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Chest);
-			recipe.AddIngredient(null, "ItemInlet");
-			recipe.AddIngredient(ItemID.Wire, 5);
+			recipe.AddIngredient(ItemID.Wire, 10);
+			recipe.AddIngredient(ItemID.Actuator, 5);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

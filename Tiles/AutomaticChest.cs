@@ -55,7 +55,12 @@ namespace Itemtronics.Tiles
 						if (Main.netMode == 2)
 						{
 							NetMessage.SendData(21, -1, -1, "", i, 0f, 0f, 0f, 0, 0, 0);
-							NetMessage.SendData(32, -1, -1, "", chestID, emptyIndex, 0f, 0f, 0, 0, 0);
+							int ownerID = Chest.UsingChest(chestID);
+							if (ownerID != -1)
+							{
+								Console.WriteLine(ownerID);
+								NetMessage.SendData(32, ownerID, -1, "", chestID, emptyIndex, 0f, 0f, 0, 0, 0);
+							}
 						}
 					}
 					else

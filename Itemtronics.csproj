@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ChestUtils.cs" />
+    <Compile Include="Items\ItemInlet.cs" />
     <Compile Include="Items\AutomaticChest.cs" />
     <Compile Include="Itemtronics.cs" />
     <Compile Include="Tiles\AutomaticChest.cs" />
@@ -59,10 +60,6 @@
     <Reference Include="Terraria">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Tiles\ItemInlet.png" />
-    <Content Include="Tiles\ItemOutlet.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
