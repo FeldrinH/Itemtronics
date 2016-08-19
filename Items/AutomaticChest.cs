@@ -11,7 +11,7 @@ namespace Itemtronics.Items
 			item.width = 26;
 			item.height = 22;
 			item.maxStack = 99;
-			AddTooltip("Automatically picks up items.");
+			AddTooltip("Picks up items when activated.");
 			item.useTurn = true;
 			item.autoReuse = true;
 			item.useAnimation = 15;

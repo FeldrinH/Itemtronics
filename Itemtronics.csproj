@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ChestUtils.cs" />
     <Compile Include="Items\AutomaticChest.cs" />
     <Compile Include="Itemtronics.cs" />
     <Compile Include="Tiles\AutomaticChest.cs" />
