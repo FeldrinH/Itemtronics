@@ -40,20 +40,22 @@ namespace Itemtronics.Tiles
 
 		public override void HitWire(int x, int y)
 		{
-			Chest chest = ChestUtils.GetModChest(x, y);
+			int chestID = ChestUtils.GetModChestID(x, y);
+			Chest chest = Main.chest[chestID];
 
 			for (int i = 0; i < 400; ++i)
 			{
 				if (Main.item[i].type != 0 && !ItemID.Sets.NebulaPickup[Main.item[i].type] && new Rectangle(chest.x * 16, chest.y * 16, 32, 32).Intersects(new Rectangle((int)Main.item[i].position.X, (int)Main.item[i].position.Y, Main.item[i].width, Main.item[i].height)))
 				{
-					int emptyIndex = Array.FindIndex(chest.item, item => item.type == 0);
+					int emptyIndex = ChestUtils.FindFirstEmptySlot(chest.item);
 					if (emptyIndex != -1)
 					{
 						chest.item[emptyIndex] = Main.item[i];
 						Main.item[i] = new Item();
 						if (Main.netMode == 2)
 						{
-							NetMessage.SendData(21, -1, -1, "", i, 0.0f, 0.0f, 0.0f, 0, 0, 0);
+							NetMessage.SendData(21, -1, -1, "", i, 0f, 0f, 0f, 0, 0, 0);
+							NetMessage.SendData(32, -1, -1, "", chestID, emptyIndex, 0f, 0f, 0, 0, 0);
 						}
 					}
 					else
