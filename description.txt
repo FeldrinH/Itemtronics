@@ -1,1 +1,4 @@
-A collection of things...
+Adds mechanisms to automate item manipulation.
+
+Features:
+* Automatic Chest - Picks up items when activated
