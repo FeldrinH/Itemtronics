@@ -1,4 +1,4 @@
 author = FeldrinH
-version = 0.1.0
+version = 0.1.1
 displayName = Itemtronics
 buildIgnore = .git\*, .git*, .vs\*, *.csproj, *.csproj.user, *.sln, bin\*, obj\*
