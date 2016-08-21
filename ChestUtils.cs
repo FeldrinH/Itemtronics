@@ -47,16 +47,44 @@ namespace Itemtronics
 			return Chest.FindChest(tile.frameX == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
 		}
 
-		internal static int FindFirstEmptySlot(Item[] items)
+		internal static int DepositItem(int chest, int owner, Item[] items, Item item)
 		{
+			for (int i = 0; i < items.Length; ++i)
+			{
+				if (item.IsTheSameAs(items[i]))
+				{
+					item.stack = items[i].stack - items[i].maxStack + item.stack;
+					items[i].stack = Math.Min(items[i].maxStack + item.stack, items[i].maxStack);
+
+					if (owner != -1)
+					{
+						NetMessage.SendData(32, owner, -1, "", chest, i, 0f, 0f, 0, 0, 0);
+					}
+
+					if (item.stack <= 0)
+					{
+						return 0;
+					}
+				}
+			}
+
 			for (int i = 0; i < items.Length; ++i)
 			{
 				if (items[i].type == 0)
 				{
-					return i;
+					items[i] = item;
+					item.newAndShiny = true;
+
+					if (owner != -1)
+					{
+						NetMessage.SendData(32, owner, -1, "", chest, i, 0f, 0f, 0, 0, 0);
+					}
+
+					return 0;
 				}
 			}
-			return -1;
+
+			return item.stack;
 		}
 	}
 }
