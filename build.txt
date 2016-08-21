@@ -2,3 +2,4 @@ author = FeldrinH
 version = 0.1.1
 displayName = Itemtronics
 buildIgnore = .git\*, .git*, .vs\*, *.csproj, *.csproj.user, *.sln, bin\*, obj\*
+homepage = https://github.com/FeldrinH/Itemtronics
