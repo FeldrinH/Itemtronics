@@ -25,11 +25,11 @@ namespace Itemtronics.Items
 
 		public override void AddRecipes()
 		{
-			/*ModRecipe recipe = new ModRecipe(mod);
+			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.Wire, 10);
 			recipe.AddIngredient(ItemID.Actuator, 5);
 			recipe.SetResult(this);
-			recipe.AddRecipe();*/
+			recipe.AddRecipe();
 		}
 	}
 }

@@ -27,8 +27,8 @@ namespace Itemtronics.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.Chest);
-			recipe.AddIngredient(ItemID.Wire, 10);
-			recipe.AddIngredient(ItemID.Actuator, 5);
+			recipe.AddIngredient(null, "ItemInlet");
+			recipe.AddIngredient(ItemID.Wire, 5);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
