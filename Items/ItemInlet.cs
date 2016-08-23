@@ -8,8 +8,8 @@ namespace Itemtronics.Items
 		public override void SetDefaults()
 		{
 			item.name = "Item Inlet";
-			item.width = 26;
-			item.height = 22;
+			item.width = 10;
+			item.height = 12;
 			item.maxStack = 99;
 			AddTooltip("Recieves items from connected outlets and places them in an adjacent chest");
 			item.useTurn = true;
@@ -18,7 +18,8 @@ namespace Itemtronics.Items
 			item.useTime = 10;
 			item.useStyle = 1;
 			item.consumable = true;
-			item.value = 500;
+			item.mech = true;
+			item.value = 5000;
 			item.createTile = mod.TileType("ItemInlet");
 		}
 

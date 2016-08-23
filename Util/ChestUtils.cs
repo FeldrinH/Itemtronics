@@ -1,58 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 
-namespace Itemtronics
+namespace Itemtronics.Util
 {
+	internal enum ItemState
+	{
+		EMPTY,
+		CHANGED,
+		SAME
+	}
+
 	internal static class ChestUtils
 	{
-		internal static Chest GetModChest(int x, int y)
+		public static Chest GetModChest(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
 			return Main.chest[Chest.FindChest(tile.frameX == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1)];
 		}
 
-		internal static Chest GetChest(int x, int y)
+		public static Chest GetChest(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
 			return Main.chest[Chest.FindChest(tile.frameX % 36 == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1)];
 		}
 
-		internal static Chest GetModChestSafe(int x, int y)
+		public static Chest GetModChestSafe(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
 			int chest = Chest.FindChest(tile.frameX == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
 			return chest == -1 ? null : Main.chest[chest];
 		}
 
-		internal static Chest GetChestSafe(int x, int y)
+		public static Chest GetChestSafe(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
 			int chest = Chest.FindChest(tile.frameX % 36 == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
 			return chest == -1 ? null : Main.chest[chest];
 		}
 
-		internal static int GetChestID(int x, int y)
+		public static int GetChestID(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
 			return Chest.FindChest(tile.frameX % 36 == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
 		}
 
-		internal static int GetModChestID(int x, int y)
+		public static int GetModChestID(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
 			return Chest.FindChest(tile.frameX == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
 		}
 
-		internal static int DepositItem(int chest, int owner, Item[] items, Item item)
+		public static ItemState DepositItem(int chest, int owner, Item[] items, Item item)
 		{
+			ItemState state = ItemState.SAME;
 			for (int i = 0; i < items.Length; ++i)
 			{
-				if (item.IsTheSameAs(items[i]))
+				if (item.IsTheSameAs(items[i]) && items[i].stack != items[i].maxStack)
 				{
+					state = ItemState.CHANGED;
+
 					item.stack = items[i].stack - items[i].maxStack + item.stack;
 					items[i].stack = Math.Min(items[i].maxStack + item.stack, items[i].maxStack);
 
@@ -63,7 +69,7 @@ namespace Itemtronics
 
 					if (item.stack <= 0)
 					{
-						return 0;
+						return ItemState.EMPTY;
 					}
 				}
 			}
@@ -80,11 +86,11 @@ namespace Itemtronics
 						NetMessage.SendData(32, owner, -1, "", chest, i, 0f, 0f, 0, 0, 0);
 					}
 
-					return 0;
+					return ItemState.EMPTY;
 				}
 			}
 
-			return item.stack;
+			return state;
 		}
 	}
 }

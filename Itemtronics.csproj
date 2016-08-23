@@ -33,11 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ChestUtils.cs" />
-    <Compile Include="Items\ItemInlet.cs" />
+    <Compile Include="Tiles\ItemInlet.cs" />
+    <Compile Include="Util\ChestUtils.cs" />
     <Compile Include="Items\AutomaticChest.cs" />
     <Compile Include="Itemtronics.cs" />
     <Compile Include="Tiles\AutomaticChest.cs" />
+    <Compile Include="Util\ItemWire.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
@@ -60,6 +61,9 @@
     <Reference Include="Terraria">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Items\ItemInlet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

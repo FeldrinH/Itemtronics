@@ -6,6 +6,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Itemtronics.Util;
 
 namespace Itemtronics.Tiles
 {
@@ -53,12 +54,11 @@ namespace Itemtronics.Tiles
 			{
 				if (Main.item[i].type != 0 && !ItemID.Sets.NebulaPickup[Main.item[i].type] && new Rectangle(chest.x * 16, chest.y * 16, 32, 32).Intersects(new Rectangle((int)Main.item[i].position.X, (int)Main.item[i].position.Y, Main.item[i].width, Main.item[i].height)))
 				{
-					int oldStack = Main.item[i].stack;
-					int newStack = ChestUtils.DepositItem(chestID, ownerID, chest.item, Main.item[i]);
+					ItemState state = ChestUtils.DepositItem(chestID, ownerID, chest.item, Main.item[i]);
 
-					if (newStack != oldStack)
+					if (state != ItemState.SAME)
 					{
-						if (newStack == 0)
+						if (state == ItemState.EMPTY)
 						{
 							Main.item[i] = new Item();
 							//Main.item[i].SetDefaults(0, false);
