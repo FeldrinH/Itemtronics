@@ -51,7 +51,7 @@ namespace Itemtronics.Tiles
 
 			for (int i = 0; i < 400; ++i)
 			{
-				if (Main.item[i].type != 0 && !ItemID.Sets.NebulaPickup[Main.item[i].type] && new Rectangle(chest.x * 16, chest.y * 16, 32, 32).Intersects(new Rectangle((int)Main.item[i].position.X, (int)Main.item[i].position.Y, Main.item[i].width, Main.item[i].height)))
+				if (Main.item[i].type != 0 && !ItemID.Sets.NebulaPickup[Main.item[i].type] && Main.item[i].type != 58 && Main.item[i].type != 184 && Main.item[i].type != 1867 && Main.item[i].type != 1868 && Main.item[i].type != 1734 && Main.item[i].type != 1735 && new Rectangle(chest.x * 16, chest.y * 16, 32, 32).Intersects(new Rectangle((int)Main.item[i].position.X, (int)Main.item[i].position.Y, Main.item[i].width, Main.item[i].height)))
 				{
 					int oldStack = Main.item[i].stack;
 					int newStack = ChestUtils.DepositItem(chestID, ownerID, chest.item, Main.item[i]);
