@@ -1,5 +1,5 @@
 author = FeldrinH
-version = 0.1.2
+version = 0.1.3
 displayName = Itemtronics
 buildIgnore = .git\*, .git*, .vs\*, *.csproj, *.csproj.user, *.sln, bin\*, obj\*
 homepage = https://github.com/FeldrinH/Itemtronics
