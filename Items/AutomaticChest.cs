@@ -19,7 +19,7 @@ namespace Itemtronics.Items
 			item.useStyle = 1;
 			item.consumable = true;
 			item.mech = true;
-			item.value = 10000;
+			item.value = 500;
 			item.createTile = mod.TileType("AutomaticChest");
 		}
 
@@ -27,8 +27,9 @@ namespace Itemtronics.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.Chest);
-			recipe.AddIngredient(null, "ItemInlet");
-			recipe.AddIngredient(ItemID.Wire, 5);
+			recipe.AddIngredient(ItemID.Wire, 10);
+			recipe.AddIngredient(ItemID.Actuator, 10);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
