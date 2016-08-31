@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.ObjectData;
 
 namespace Itemtronics.Util
 {
@@ -12,23 +13,10 @@ namespace Itemtronics.Util
 
 	internal static class ChestUtils
 	{
-		public static Chest GetModChest(int x, int y)
-		{
-			Tile tile = Main.tile[x, y];
-			return Main.chest[Chest.FindChest(tile.frameX == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1)];
-		}
-
 		public static Chest GetChest(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
 			return Main.chest[Chest.FindChest(tile.frameX % 36 == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1)];
-		}
-
-		public static Chest GetModChestSafe(int x, int y)
-		{
-			Tile tile = Main.tile[x, y];
-			int chest = Chest.FindChest(tile.frameX == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
-			return chest == -1 ? null : Main.chest[chest];
 		}
 
 		public static Chest GetChestSafe(int x, int y)
@@ -44,10 +32,11 @@ namespace Itemtronics.Util
 			return Chest.FindChest(tile.frameX % 36 == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
 		}
 
-		public static int GetModChestID(int x, int y)
+		//Should work for any size of chest, as long as chest location is upper right corner
+		public static int GetDynamicChestID(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
-			return Chest.FindChest(tile.frameX == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
+			return Chest.FindChest(x - (tile.frameX / 18) % TileObjectData.GetTileData(tile).Width, y - (tile.frameY / 18)); 
 		}
 
 		public static ItemState DepositItem(int chest, int owner, Item[] items, Item item)

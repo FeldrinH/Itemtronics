@@ -11,7 +11,7 @@ namespace Itemtronics.Items
 			item.width = 10;
 			item.height = 12;
 			item.maxStack = 99;
-			AddTooltip("Recieves items from connected outlets and places them in an adjacent chest");
+			AddTooltip("Takes items in from a chest and sends them to connected outlets");
 			item.useTurn = true;
 			item.autoReuse = true;
 			item.useAnimation = 15;
@@ -19,7 +19,7 @@ namespace Itemtronics.Items
 			item.useStyle = 1;
 			item.consumable = true;
 			item.mech = true;
-			item.value = 5000;
+			item.value = 1000;
 			item.createTile = mod.TileType("ItemInlet");
 		}
 
@@ -28,6 +28,7 @@ namespace Itemtronics.Items
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.Wire, 10);
 			recipe.AddIngredient(ItemID.Actuator, 5);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

@@ -19,7 +19,7 @@ namespace Itemtronics.Items
 			item.useStyle = 1;
 			item.consumable = true;
 			item.mech = true;
-			item.value = 500;
+			item.value = 2500;
 			item.createTile = mod.TileType("AutomaticChest");
 		}
 
