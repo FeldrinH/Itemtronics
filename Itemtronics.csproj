@@ -34,9 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ChestUtils.cs" />
+    <Compile Include="Items\EjectorChest.cs" />
     <Compile Include="Items\ItemInlet.cs" />
     <Compile Include="Items\AutomaticChest.cs" />
     <Compile Include="Itemtronics.cs" />
+    <Compile Include="Tiles\EjectorChest.cs" />
     <Compile Include="Tiles\AutomaticChest.cs" />
   </ItemGroup>
   <ItemGroup>
