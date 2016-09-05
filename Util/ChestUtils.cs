@@ -15,14 +15,12 @@ namespace Itemtronics.Util
 	{
 		public static Chest GetChest(int x, int y)
 		{
-			Tile tile = Main.tile[x, y];
-			return Main.chest[Chest.FindChest(tile.frameX % 36 == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1)];
+			return Main.chest[GetChestID(x, y)];
 		}
 
 		public static Chest GetChestSafe(int x, int y)
 		{
-			Tile tile = Main.tile[x, y];
-			int chest = Chest.FindChest(tile.frameX % 36 == 0 ? x : x - 1, tile.frameY == 0 ? y : y - 1);
+			int chest = GetChestID(x, y);
 			return chest == -1 ? null : Main.chest[chest];
 		}
 
@@ -33,10 +31,11 @@ namespace Itemtronics.Util
 		}
 
 		//Should work for any size of chest, as long as chest location is upper right corner
-		public static int GetDynamicChestID(int x, int y)
+		public static int GetVarSizeChestID(int x, int y)
 		{
 			Tile tile = Main.tile[x, y];
-			return Chest.FindChest(x - (tile.frameX / 18) % TileObjectData.GetTileData(tile).Width, y - (tile.frameY / 18)); 
+			TileObjectData tileData = TileObjectData.GetTileData(tile);
+			return Chest.FindChest(x - tile.frameX / 18 % (tileData == null ? 1 : tileData.Width), y - tile.frameY / 18);
 		}
 
 		public static ItemState DepositItem(int chest, int owner, Item[] items, Item item)
