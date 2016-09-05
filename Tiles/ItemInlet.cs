@@ -12,7 +12,7 @@ namespace Itemtronics.Tiles
 	{
 		public override void SetDefaults()
 		{
-			Main.tileSolid[Type] = true;
+			Main.tileSolid[Type] = false;
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = false;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
@@ -30,13 +30,21 @@ namespace Itemtronics.Tiles
 			//tile.frameY = 0;
 			return true;
 		}*/
-		
-		public override void RightClick(int i, int j)
+
+		public override void RightClick(int x, int y)
 		{
-			Tile tile = Main.tile[i, j];
+			Tile tile = Main.tile[x, y];
 			int dir = (tile.frameX / 18 + 1) % 4;
 			tile.frameX = (short)(dir * 18);
-			Main.NewText(ChestUtils.GetVarSizeChestID(i+ItemWire.xOffset[dir], j+ItemWire.yOffset[dir]).ToString());
+			Main.NewText(ChestUtils.GetTargetChestID(x, y, dir).ToString());
+		}
+
+		public override void HitWire(int x, int y)
+		{
+			if (!(Wiring._currentWireColor == ItemWire.CurWireColor && Wiring._wireList.))
+			{
+
+			}
 		}
 	}
 }

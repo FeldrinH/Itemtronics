@@ -13,6 +13,9 @@ namespace Itemtronics.Util
 
 	internal static class ChestUtils
 	{
+		public static readonly int[] xOffset = { 0, -1, 0, 1 };
+		public static readonly int[] yOffset = { -1, 0, 1, 0 };
+
 		public static Chest GetChest(int x, int y)
 		{
 			return Main.chest[GetChestID(x, y)];
@@ -36,6 +39,11 @@ namespace Itemtronics.Util
 			Tile tile = Main.tile[x, y];
 			TileObjectData tileData = TileObjectData.GetTileData(tile);
 			return Chest.FindChest(x - tile.frameX / 18 % (tileData == null ? 1 : tileData.Width), y - tile.frameY / 18);
+		}
+
+		public static int GetTargetChestID(int x, int y, int dir)
+		{
+			return GetVarSizeChestID(x + xOffset[dir], y + yOffset[dir]);
 		}
 
 		public static ItemState DepositItem(int chest, int owner, Item[] items, Item item)
