@@ -14,7 +14,7 @@ namespace Itemtronics.Util
 	internal static class ChestUtils
 	{
 		public static readonly int[] xOffset = { 0, -1, 0, 1 };
-		public static readonly int[] yOffset = { -1, 0, 1, 0 };
+		public static readonly int[] yOffset = { 1, 0, -1, 0 };
 
 		public static Chest GetChest(int x, int y)
 		{
@@ -75,7 +75,7 @@ namespace Itemtronics.Util
 				if (items[i].type == 0)
 				{
 					items[i] = item;
-					item.newAndShiny = true;
+					//item.newAndShiny = true;
 
 					if (owner != -1)
 					{
