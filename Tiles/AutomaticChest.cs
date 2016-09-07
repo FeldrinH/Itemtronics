@@ -6,6 +6,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Itemtronics.Util;
 
 namespace Itemtronics.Tiles
 {
@@ -20,6 +21,7 @@ namespace Itemtronics.Tiles
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
 			Main.tileValue[Type] = 500;
+			Main.tileLavaDeath[Type] = false;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.Origin = new Point16(0, 1);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
@@ -40,7 +42,7 @@ namespace Itemtronics.Tiles
 
 		public override void HitWire(int x, int y)
 		{
-			int chestID = ChestUtils.GetModChestID(x, y);
+			int chestID = ChestUtils.GetChestID(x, y);
 			int ownerID = Main.netMode == 2 ? Chest.UsingChest(chestID) : -1;
 			Chest chest = Main.chest[chestID];
 
@@ -53,12 +55,11 @@ namespace Itemtronics.Tiles
 			{
 				if (Main.item[i].type != 0 && !ItemID.Sets.NebulaPickup[Main.item[i].type] && Main.item[i].type != 58 && Main.item[i].type != 184 && Main.item[i].type != 1867 && Main.item[i].type != 1868 && Main.item[i].type != 1734 && Main.item[i].type != 1735 && new Rectangle(chest.x * 16, chest.y * 16, 32, 32).Intersects(new Rectangle((int)Main.item[i].position.X, (int)Main.item[i].position.Y, Main.item[i].width, Main.item[i].height)))
 				{
-					int oldStack = Main.item[i].stack;
-					int newStack = ChestUtils.DepositItem(chestID, ownerID, chest.item, Main.item[i]);
+					ItemState state = ChestUtils.DepositItem(chestID, ownerID, chest.item, Main.item[i]);
 
-					if (newStack != oldStack)
+					if (state != ItemState.SAME)
 					{
-						if (newStack == 0)
+						if (state == ItemState.EMPTY)
 						{
 							Main.item[i] = new Item();
 							//Main.item[i].SetDefaults(0, false);
@@ -74,7 +75,7 @@ namespace Itemtronics.Tiles
 
 		public string MapChestName(string name, int i, int j)
 		{
-			string chestName = ChestUtils.GetModChest(i, j).name;
+			string chestName = ChestUtils.GetChest(i, j).name;
 			if (chestName == "")
 			{
 				return name;
@@ -172,7 +173,7 @@ namespace Itemtronics.Tiles
 		public override void MouseOver(int i, int j)
 		{
 			Player player = Main.player[Main.myPlayer];
-			Chest chest = ChestUtils.GetModChestSafe(i, j);
+			Chest chest = ChestUtils.GetChestSafe(i, j);
 			player.showItemIcon2 = -1;
 			if (chest == null)
 			{
