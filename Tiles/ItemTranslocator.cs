@@ -13,6 +13,7 @@ namespace Itemtronics.Tiles
 		public override void SetDefaults()
 		{
 			Main.tileSolid[Type] = true;
+			Main.tileSolidTop[Type] = true;
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = false;
 			Main.tileValue[Type] = 1000;

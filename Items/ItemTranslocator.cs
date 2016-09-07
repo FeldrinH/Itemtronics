@@ -11,7 +11,7 @@ namespace Itemtronics.Items
 			item.width = 10;
 			item.height = 12;
 			item.maxStack = 99;
-			AddTooltip("Moves items from one adjacent chest to another when activated");
+			AddTooltip("Moves a stack of items from one adjacent chest to another when activated");
 			AddTooltip2("Right click to change direction");
 			item.useTurn = true;
 			item.autoReuse = true;

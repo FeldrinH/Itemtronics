@@ -3,3 +3,4 @@ Adds mechanisms to automate item manipulation.
 Features:
 * Automatic Chest - Picks up items when activated
 * Ejector Chest - Drops a stack of items when activated
+* Item Translocator - Moves a stack of items from one adjacent chest to another when activated
