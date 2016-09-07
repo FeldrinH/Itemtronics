@@ -6,6 +6,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Itemtronics.Util;
 
 namespace Itemtronics.Tiles
 {
@@ -40,7 +41,7 @@ namespace Itemtronics.Tiles
 
 		public override void HitWire(int x, int y)
 		{
-			int chestID = ChestUtils.GetModChestID(x, y);
+			int chestID = ChestUtils.GetChestID(x, y);
 			int ownerID = Main.netMode == 2 ? Chest.UsingChest(chestID) : -1;
 			Chest chest = Main.chest[chestID];
 
@@ -68,7 +69,7 @@ namespace Itemtronics.Tiles
 
 		public string MapChestName(string name, int i, int j)
 		{
-			string chestName = ChestUtils.GetModChest(i, j).name;
+			string chestName = ChestUtils.GetChest(i, j).name;
 			if (chestName == "")
 			{
 				return name;
@@ -166,7 +167,7 @@ namespace Itemtronics.Tiles
 		public override void MouseOver(int i, int j)
 		{
 			Player player = Main.player[Main.myPlayer];
-			Chest chest = ChestUtils.GetModChestSafe(i, j);
+			Chest chest = ChestUtils.GetChestSafe(i, j);
 			player.showItemIcon2 = -1;
 			if (chest == null)
 			{

@@ -33,13 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ChestUtils.cs" />
     <Compile Include="Items\EjectorChest.cs" />
     <Compile Include="Items\ItemInlet.cs" />
     <Compile Include="Items\AutomaticChest.cs" />
     <Compile Include="Itemtronics.cs" />
     <Compile Include="Tiles\EjectorChest.cs" />
     <Compile Include="Tiles\AutomaticChest.cs" />
+    <Compile Include="Tiles\ItemTranslocator.cs" />
+    <Compile Include="Util\ChestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
